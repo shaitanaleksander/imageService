@@ -9,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 	"io"
 	"bytes"
+	"fmt"
 )
 
 const S3_BUCKET = "shaitanbucket"
@@ -24,6 +25,7 @@ func init() {
 		Region:      aws.String(endpoints.UsEast1RegionID),
 		Credentials: credentials.NewSharedCredentials("awsConfig", ""),
 	}))
+	fmt.Print(ses.Config.Credentials.Get())
 	uploader = s3manager.NewUploader(ses)
 	downloader = s3manager.NewDownloader(ses)
 	svc = s3.New(ses)
